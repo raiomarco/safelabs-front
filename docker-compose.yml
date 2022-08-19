@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+
+  safelabs-front:
+    container_name: safelabs-front
+    environment:
+      - REACT_APP_BUILD_API_URL
+      - REACT_APP_DEV_API_URL
+    build:
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - '80:80'
+      - '443:443'

@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# SafeLabs-playlist-front
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to run
 
-## Available Scripts
+First of all, we need to set the environment variables.
 
-In the project directory, you can run:
+You can either create a `.env` file based on the `.env.example` file or you can set the environment variables directly in your terminal (great for CI/CD).
 
-### `npm start`
+Then you can execute the following command to run the application:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+docker-compose -f .\docker-compose.yml up -d -V --remove-orphans --build
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+And now you can visit the application on the 80 port (or the 443 port, but missing certificate, could use a proxy pass).
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Report
 
-### `npm run build`
+This application was created because i thought a `FullStack` challenge without a front-end was a bit strange...
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It's not complicated, using `React` with `react-router-dom` for routing and `bootstrap` for the styling (with custom css too).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A `template` was created to prevents code repetition and to make the application more readable.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I didn't created a `components` folder because everything was so unique (because of the simplicity of the app) that it was not necessary (which is really sad because i really like props and state management =/).
 
-### `npm run eject`
+The `/home` page is the main page of the application, where you can select what type of information do you want to use on the search.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Every input is validated before submit (which is just changing the page to the next one).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+On the `/results` page, you can see the results from the back-end API.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The query params is used to keep the search on the URL, so the user can save or share without problems (and it's removed when it's back on home, keeping it nice and clean).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The page is responsive and adapts for mobile, so you can use it on a smartphone.
 
-## Learn More
+This project uses a `.env` for back-end URL's, making it and easier to deploy to different environments (an staging environment and a production environment for example).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+When there's an error on the back-end for some reason, there's a popup with the error message, and when pressing OK it will bring the user to the home (a great way to test it is trying a nonexistent city).
