@@ -44,7 +44,7 @@ function Home() {
   }
 
   const changeCoordinatesHandler = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value.replace(/\D+/g, "") });
+    setData({ ...data, [e.target.name]: e.target.value.replace(/[^0-9.]+/g, "").split("").reverse().join("").replace(/(\.)(?=.*\1)/g, '').split("").reverse().join("") });
   }
 
   const submitHandler = (e) => {
